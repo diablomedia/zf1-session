@@ -5,7 +5,8 @@
     beStrictAboutTestsThatDoNotTestAnything="true"
     backupGlobals="true"
     stderr="true"
-    colors="true">
+    colors="true"
+    bootstrap="./vendor/autoload.php">
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>

@@ -20,29 +20,6 @@
  * @version    $Id$
  */
 
-// This is needed for the seprate process tests currently, will look into removing this later
-require_once __DIR__ . '/../../../vendor/diablomedia/zendframework1-exception/src/Zend/Exception.php';
-
-/**
- * @see Zend_Session_Exception
- */
-require_once 'Zend/Session/Exception.php';
-
-/**
- * @see Zend_Session_Abstract
- */
-require_once 'Zend/Session/Abstract.php';
-
-/**
- * @see Zend_Session_Namespace
- */
-require_once 'Zend/Session/Namespace.php';
-
-/**
- * @see Zend_Session
- */
-require_once 'Zend/Session.php';
-
 
 /**
  * @category   Zend
@@ -86,6 +63,9 @@ class Zend_Session_TestHelper
      */
     public function doExpireAll(array $args)
     {
+        // Not sure why, but when tests are run in separate process, they're not autoloading classes properly
+        // This fixes for now, will investigate more later
+        require_once __DIR__ . '/../../../vendor/autoload.php';
         Zend_Session::setOptions(array('remember_me_seconds' => 15, 'gc_probability' => 2));
         session_id($args[0]);
         if (isset($args[1]) && !empty($args[1])) {

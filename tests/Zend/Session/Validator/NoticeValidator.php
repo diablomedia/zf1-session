@@ -20,10 +20,6 @@
  * @version    $Id:$
  */
 
-/**
- * @see Zend_Session_Validator_Abstract
- */
-require_once 'Zend/Session/Validator/Abstract.php';
 
 /**
  * Session validator for ZF-11186.
