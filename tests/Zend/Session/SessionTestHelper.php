@@ -20,6 +20,9 @@
  * @version    $Id$
  */
 
+// This helper file is executed in SessionTest via exec() calls, so this is necessary
+// to be able to autoload classes that are present in this file.
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 /**
  * @category   Zend
@@ -29,7 +32,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Session
  */
-class Zend_Session_TestHelper
+class Zend_Session_SessionTestHelper
 {
     /**
      * Runs the test method specified via command line arguments.
@@ -63,9 +66,6 @@ class Zend_Session_TestHelper
      */
     public function doExpireAll(array $args)
     {
-        // Not sure why, but when tests are run in separate process, they're not autoloading classes properly
-        // This fixes for now, will investigate more later
-        require_once __DIR__ . '/../../../vendor/autoload.php';
         Zend_Session::setOptions(array('remember_me_seconds' => 15, 'gc_probability' => 2));
         session_id($args[0]);
         if (isset($args[1]) && !empty($args[1])) {
@@ -149,6 +149,6 @@ class Zend_Session_TestHelper
 }
 
 
-$testHelper = new Zend_Session_TestHelper();
+$testHelper = new Zend_Session_SessionTestHelper();
 
 exit($testHelper->run($argv));

@@ -1,2 +1,3 @@
 parameters:
     ignoreErrors:
+        - '#Casting to string something that.s already string\.#'

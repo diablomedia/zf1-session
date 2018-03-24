@@ -215,7 +215,7 @@ class Zend_Session extends Zend_Session_Abstract
      * getOptions()
      *
      * @param string $optionName OPTIONAL
-     * @return array|string
+     * @return array|string|null
      */
     public static function getOptions($optionName = null)
     {
@@ -506,6 +506,7 @@ class Zend_Session extends Zend_Session_Abstract
         if (!$hashBitsPerChar) {
             $hashBitsPerChar = 5; // the default value
         }
+        $pattern = '';
         switch($hashBitsPerChar) {
             case 4: $pattern = '^[0-9a-f]*$'; break;
             case 5: $pattern = '^[0-9a-v]*$'; break;
