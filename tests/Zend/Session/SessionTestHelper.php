@@ -22,7 +22,7 @@
 
 // This helper file is executed in SessionTest via exec() calls, so this is necessary
 // to be able to autoload classes that are present in this file.
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once 'autoload.php';
 
 /**
  * @category   Zend
