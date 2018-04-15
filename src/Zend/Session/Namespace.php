@@ -42,7 +42,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *
      * @var string
      */
-    protected $_namespace = "Default";
+    protected $_namespace = 'Default';
 
     /**
      * Namespace locking mechanism
@@ -93,7 +93,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
             throw new Zend_Session_Exception('Session namespace must be a non-empty string.');
         }
 
-        if ($namespace[0] == "_") {
+        if ($namespace[0] == '_') {
             throw new Zend_Session_Exception('Session namespace must not start with an underscore.');
         }
 
@@ -152,7 +152,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
                             unset($_SESSION['__ZF'][$namespace]['ENVNH'][$variable]);
                         }
                     }
-                    if(empty($_SESSION['__ZF'][$namespace]['ENVNH'])) {
+                    if (empty($_SESSION['__ZF'][$namespace]['ENVNH'])) {
                         unset($_SESSION['__ZF'][$namespace]['ENVNH']);
                     }
                 }
@@ -293,7 +293,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      */
     public function apply($callback)
     {
-        $arg_list = func_get_args();
+        $arg_list    = func_get_args();
         $arg_list[0] = $_SESSION[$this->_namespace];
         return call_user_func_array($callback, $arg_list);
     }
@@ -312,9 +312,9 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      */
     public function applySet($callback)
     {
-        $arg_list = func_get_args();
+        $arg_list    = func_get_args();
         $arg_list[0] = $_SESSION[$this->_namespace];
-        $result = call_user_func_array($callback, $arg_list);
+        $result      = call_user_func_array($callback, $arg_list);
         if (!is_array($result)) {
             throw new Zend_Session_Exception('Result must be an array. Got: ' . gettype($result));
         }
@@ -378,9 +378,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
 
             // apply expiration to entire namespace
             $_SESSION['__ZF'][$this->_namespace]['ENT'] = time() + $seconds;
-
         } else {
-
             if (is_string($variables)) {
                 $variables = array($variables);
             }
@@ -422,9 +420,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
             } else {
                 $_SESSION['__ZF'][$this->_namespace]['ENNH'] = $hops;
             }
-
         } else {
-
             if (is_string($variables)) {
                 $variables = array($variables);
             }

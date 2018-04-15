@@ -70,8 +70,7 @@ class Zend_Session_SessionTestHelper
         session_id($args[0]);
         if (isset($args[1]) && !empty($args[1])) {
             $s = new Zend_Session_Namespace($args[1]);
-        }
-        else {
+        } else {
             $s = new Zend_Session_Namespace();
         }
         if (isset($args[2]) && ($args[2] == 'ZF-7196')) {
@@ -104,7 +103,7 @@ class Zend_Session_SessionTestHelper
         // $s->someArray = array( & $args ) ;
         // $args['OOOOOOOOOOOOOOOO'] = 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYY';
 
-        $s->someArray = $args;
+        $s->someArray        = $args;
         $s->someArray['bee'] = 'honey'; // Repeating this line twice "solves" the problem for some versions of PHP,
         $s->someArray['bee'] = 'honey'; // but PHP 5.2.1 has the real fix for ZF-800.
         $s->someArray['ant'] = 'sugar';
@@ -114,7 +113,7 @@ class Zend_Session_SessionTestHelper
 
         $result = '';
         foreach ($s->getIterator() as $key => $val) {
-            $result .= "$key === ". (print_r($val,true)) .';';
+            $result .= "$key === " . (print_r($val, true)) . ';';
         }
 
         Zend_Session::writeClose();
@@ -132,13 +131,12 @@ class Zend_Session_SessionTestHelper
         session_id($args[0]);
         if (isset($args[1]) && !empty($args[1])) {
             $s = new Zend_Session_Namespace($args[1]);
-        }
-        else {
+        } else {
             $s = new Zend_Session_Namespace();
         }
         $result = '';
         foreach ($s->getIterator() as $key => $val) {
-            $result .= "$key === ". (str_replace(array("\n", ' '),array(';',''), print_r($val, true))) .';';
+            $result .= "$key === " . (str_replace(array("\n", ' '), array(';',''), print_r($val, true))) . ';';
         }
         // file_put_contents('out.sesstiontest.get', print_r($s->someArray, true));
         Zend_Session::writeClose();

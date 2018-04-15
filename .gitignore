@@ -2,3 +2,4 @@
 /composer.lock
 /clover.xml
 /tests/Zend/Session/_files/ZF-3378/*
+.php_cs.cache
