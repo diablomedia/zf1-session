@@ -1133,7 +1133,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
         session_start();
 
         // Set session ID to invalid value
-        session_id('xxx');
+        @session_id('xxx');
 
         // Attempt to start the session
         try {
