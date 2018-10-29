@@ -1111,6 +1111,13 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
      */
     public function testInvalidPreexistingSessionIdDoesNotPreventRegenerationOfSid()
     {
+        // This test cannot be run by itself since the call to Zend_Session::start tries to write session INI settings
+        // after session_start is called manually in this test.  Just calling the previous test with tearDown/setUp
+        // to mimic how it's run when run in the full suite.
+        $this->testNoNoticesIfNoValidatorDataInSession();
+        $this->tearDown();
+        $this->setUp();
+
         // Pattern: [0-9a-v]*
         ini_set('session.hash_bits_per_character', 5);
 
@@ -1130,10 +1137,13 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
             @mkdir($sessionStore . DIRECTORY_SEPARATOR . $subdir);
         }
 
-        session_start();
+        // Make the x dir explicitly so the invalid session id can be written when session_start is called
+        @mkdir($sessionStore . DIRECTORY_SEPARATOR . 'x');
 
         // Set session ID to invalid value
-        @session_id('xxx');
+        session_id('xxx');
+
+        session_start();
 
         // Attempt to start the session
         try {
@@ -1151,6 +1161,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
         foreach ($sessionCharSet as $subdir) {
             @rmdir($sessionStore . DIRECTORY_SEPARATOR . $subdir);
         }
+        @rmdir($sessionStore . DIRECTORY_SEPARATOR . 'x');
         @rmdir($sessionStore);
 
         // Check the result
