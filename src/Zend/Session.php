@@ -486,7 +486,7 @@ class Zend_Session extends Zend_Session_Abstract
      * Perform a hash-bits check on the session ID
      *
      * @param string $id Session ID
-     * @return bool
+     * @return int|false
      */
     protected static function _checkId($id)
     {
@@ -750,7 +750,7 @@ class Zend_Session extends Zend_Session_Abstract
 
             setcookie(
                 session_name(),
-                false,
+                '',
                 315554400, // strtotime('1980-01-01'),
                 $cookie_params['path'],
                 $cookie_params['domain'],

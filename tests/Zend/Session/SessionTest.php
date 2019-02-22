@@ -1031,7 +1031,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
             $result = $this->sortResult($result);
             $this->assertTrue(
                 $result === '',
-                    "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)"
+                "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)"
             );
         }
 

@@ -1,6 +1,10 @@
 parameters:
+    level: 7
+    paths:
+        - ./
     excludes_analyse:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
-        - '#Casting to string something that.s already string\.#'
+        # This isn't true, if session module isn't loaded, $_SESSION var won't be set
+        - '#Variable \$_SESSION in isset\(\) always exists and is not nullable\.#'

@@ -289,7 +289,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *   $namespace->apply('array_merge', array('tree' => 'apple', 'fruit' => 'peach'), array('flower' => 'rose'));
      *   $namespace->apply('count');
      *
-     * @param string|array $callback - callback function
+     * @param callable $callback - callback function
      */
     public function apply($callback)
     {
@@ -308,7 +308,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      * Example:
      *   $namespace->applySet('array_merge', array('tree' => 'apple', 'fruit' => 'peach'), array('flower' => 'rose'));
      *
-     * @param string|array $callback - callback function
+     * @param callable $callback - callback function
      */
     public function applySet($callback)
     {
