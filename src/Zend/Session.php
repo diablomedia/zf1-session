@@ -350,7 +350,8 @@ class Zend_Session extends Zend_Session_Abstract
             $seconds,
             $cookieParams['path'],
             $cookieParams['domain'],
-            $cookieParams['secure']
+            $cookieParams['secure'],
+            $cookieParams['httponly']
             );
 
         // normally "rememberMe()" represents a security context change, so should use new session id
@@ -754,7 +755,8 @@ class Zend_Session extends Zend_Session_Abstract
                 315554400, // strtotime('1980-01-01'),
                 $cookie_params['path'],
                 $cookie_params['domain'],
-                $cookie_params['secure']
+                $cookie_params['secure'],
+                $cookie_params['httponly']
                 );
         }
     }
