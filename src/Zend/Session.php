@@ -694,7 +694,22 @@ class Zend_Session extends Zend_Session_Abstract
             parent::$_writable = false;
         }
 
+        /*
+         * In some cases (when php processes run at the same time) a race condition can occur
+         * This error handler catches specific warnings or throws an exception otherwise
+         */
+        set_error_handler(function($num, $str, $file, $line, $context = null) {
+            if(strpos($str, 'Failed to write session data using user defined save handler') !== false) {
+                parent::$_writable = false;
+            } else {
+                throw new Zend_Session_Exception($str);
+            }
+        }, E_WARNING);
+
         session_write_close();
+
+        restore_error_handler();
+        
         self::$_writeClosed = true;
     }
 
