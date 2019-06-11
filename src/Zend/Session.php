@@ -47,6 +47,17 @@ class Zend_Session extends Zend_Session_Abstract
      */
     protected static $_throwStartupExceptions = true;
 
+
+    /**
+     * Whether or not session write warnings should be suppressed
+     *
+     * If current process gets in a race condition with another php process,
+     * PHP throws a "Failed to write session data using user defined save handler" warning if the session
+     *
+     * @var bool
+     */
+    protected static $_suppressSessionWriteWarning = true;
+
     /**
      * Check whether or not the session was started
      *
@@ -110,9 +121,10 @@ class Zend_Session extends Zend_Session_Abstract
      * @var array
      */
     private static $_localOptions = array(
-        'strict'                   => '_strict',
-        'remember_me_seconds'      => '_rememberMeSeconds',
-        'throw_startup_exceptions' => '_throwStartupExceptions'
+        'strict'                         => '_strict',
+        'remember_me_seconds'            => '_rememberMeSeconds',
+        'throw_startup_exceptions'       => '_throwStartupExceptions',
+        'suppress_session_write_warning' => '_suppressSessionWriteWarning',
     );
 
     /**
@@ -696,20 +708,28 @@ class Zend_Session extends Zend_Session_Abstract
 
         /*
          * In some cases (when php processes run at the same time) a race condition can occur
-         * This error handler catches specific warnings or throws an exception otherwise
+         * This error handler catches specific warnings if the related option is set
          */
         set_error_handler(function ($num, $str, $file, $line, $context = null) {
+            $triggerError = true;
+
             if (strpos($str, 'Failed to write session data using user defined save handler') !== false) {
                 parent::$_writable = false;
-            } else {
-                throw new Zend_Session_Exception($str);
+
+                if (self::$_suppressSessionWriteWarning === true) {
+                    $triggerError = false;
+                }
+            }
+
+            if ($triggerError === true) {
+                trigger_error($str, E_USER_WARNING);
             }
         }, E_WARNING);
 
         session_write_close();
 
         restore_error_handler();
-        
+
         self::$_writeClosed = true;
     }
 
