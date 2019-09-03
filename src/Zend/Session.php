@@ -256,7 +256,7 @@ class Zend_Session extends Zend_Session_Abstract
             array(&$saveHandler, 'write'),
             array(&$saveHandler, 'destroy'),
             array(&$saveHandler, 'gc')
-            );
+        );
 
         if (!$result) {
             throw new Zend_Session_Exception('Unable to set session handler');
@@ -352,7 +352,7 @@ class Zend_Session extends Zend_Session_Abstract
             $cookieParams['domain'],
             $cookieParams['secure'],
             $cookieParams['httponly']
-            );
+        );
 
         // normally "rememberMe()" represents a security context change, so should use new session id
         self::regenerateId();
@@ -757,7 +757,7 @@ class Zend_Session extends Zend_Session_Abstract
                 $cookie_params['domain'],
                 $cookie_params['secure'],
                 $cookie_params['httponly']
-                );
+            );
         }
     }
 

@@ -86,7 +86,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
             E_ALL | E_STRICT,
             error_reporting(E_ALL | E_STRICT),
             'A test altered error_reporting to something other than E_ALL | E_STRICT'
-            );
+        );
 
         Zend_Session_Namespace::unlockAll();
 
