@@ -716,12 +716,12 @@ class Zend_Session extends Zend_Session_Abstract
             if (strpos($str, 'Failed to write session data using user defined save handler') !== false) {
                 parent::$_writable = false;
 
-                if (self::$_suppressSessionWriteWarning === true) {
+                if (self::$_suppressSessionWriteWarning) {
                     $triggerError = false;
                 }
             }
 
-            if ($triggerError === true) {
+            if ($triggerError) {
                 trigger_error($str, E_USER_WARNING);
             }
         }, E_WARNING);
