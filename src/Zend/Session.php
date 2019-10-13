@@ -56,7 +56,7 @@ class Zend_Session extends Zend_Session_Abstract
      *
      * @var bool
      */
-    protected static $_suppressSessionWriteWarning = true;
+    protected static $_suppressSessionWriteWarning = false;
 
     /**
      * Check whether or not the session was started
