@@ -258,7 +258,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      * @param string $name - programmatic name of a key, in a <key,value> pair in the current namespace
      * @param mixed $value - value in the <key,value> pair to assign to the $name key
      * @throws Zend_Session_Exception
-     * @return true
+     * @return void
      */
     public function __set($name, $value)
     {
@@ -290,6 +290,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *   $namespace->apply('count');
      *
      * @param callable $callback - callback function
+     * @return mixed
      */
     public function apply($callback)
     {
@@ -309,6 +310,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *   $namespace->applySet('array_merge', array('tree' => 'apple', 'fruit' => 'peach'), array('flower' => 'rose'));
      *
      * @param callable $callback - callback function
+     * @return array
      */
     public function applySet($callback)
     {

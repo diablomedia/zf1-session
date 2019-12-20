@@ -38,12 +38,14 @@ interface Zend_Session_SaveHandler_Interface
      *
      * @param string $save_path
      * @param string $name
+     * @return bool
      */
     public function open($save_path, $name);
 
     /**
      * Close Session - free resources
      *
+     * @return bool
      */
     public function close();
 
@@ -51,6 +53,7 @@ interface Zend_Session_SaveHandler_Interface
      * Read session data
      *
      * @param string $id
+     * @return mixed
      */
     public function read($id);
 
@@ -59,6 +62,7 @@ interface Zend_Session_SaveHandler_Interface
      *
      * @param string $id
      * @param mixed $data
+     * @return bool
      */
     public function write($id, $data);
 
@@ -67,6 +71,7 @@ interface Zend_Session_SaveHandler_Interface
      * given session id
      *
      * @param string $id
+     * @return bool
      */
     public function destroy($id);
 
@@ -75,6 +80,7 @@ interface Zend_Session_SaveHandler_Interface
      * than $maxlifetime (in seconds)
      *
      * @param int $maxlifetime
+     * @return bool
      */
     public function gc($maxlifetime);
 }

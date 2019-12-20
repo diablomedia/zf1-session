@@ -1,5 +1,7 @@
 parameters:
-    level: 7
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    level: 8
     paths:
         - ./
     excludes_analyse:
@@ -18,3 +20,7 @@ parameters:
         -
             message: '#Parameter \#6 \$gc of function session_set_save_handler expects callable\(string\): bool, array\(Zend_Session_SaveHandler_Interface, .gc.\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Session.php
+        # Session extension is required by composer, shouldn't hit false here
+        -
+            message: '#Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.#'
+            path: './src/Zend/Session.php'
