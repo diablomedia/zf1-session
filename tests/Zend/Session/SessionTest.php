@@ -70,6 +70,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
         // _unitTestEnabled is utilised by other tests to handle session data processing
         // Zend_Session tests should pass with _unitTestEnabled turned off
         Zend_Session::$_unitTestEnabled = false;
+        error_reporting(E_ALL | E_STRICT);
     }
 
     /**
