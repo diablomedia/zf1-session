@@ -8,19 +8,28 @@ parameters:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
-        # This isn't true, if session module isn't loaded, $_SESSION var won't be set
-        - '#Variable \$_SESSION in isset\(\) always exists and is not nullable\.#'
         # Arrays can be callable
         -
-            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(.Zend_Session…., .handleSessionStartE….\) given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(.Zend_Session…., .handleSessionStartE….\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Session.php
         -
-            message: '#Parameter \#1 \$error_handler of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(.Zend_Session…., .handleSilentWriteCl….\) given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(.Zend_Session…., .handleSilentWriteCl….\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Session.php
         -
             message: '#Parameter \#6 \$gc of function session_set_save_handler expects callable\(string\): bool, array\(Zend_Session_SaveHandler_Interface, .gc.\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Session.php
+        # I think phpstan doesn't like the type of the closure here
+        -
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, Closure\(mixed, mixed, mixed, mixed, mixed\): void given\.#'
+            path: './src/Zend/Session.php'
         # Session extension is required by composer, shouldn't hit false here
         -
             message: '#Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.#'
+            path: './src/Zend/Session.php'
+        # PHPStan is inferring using reflection I think, docs don't show false (phpstan is probably correct but not going to change code for now)
+        -
+            message: '#Method Zend_Session::getId\(\) should return string but returns string\|false\.#'
+            path: './src/Zend/Session.php'
+        -
+            message: '#Parameter \#1 \$name of function setcookie expects string, string\|false given\.#'
             path: './src/Zend/Session.php'
