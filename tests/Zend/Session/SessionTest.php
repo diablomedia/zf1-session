@@ -114,7 +114,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
      */
     public function sortResult(array $result)
     {
-        $results = explode(';', array_pop($result));
+        $results = explode(';', array_pop($result) ?? '');
         sort($results);
         return implode(';', $results);
     }
