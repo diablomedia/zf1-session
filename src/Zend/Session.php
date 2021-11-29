@@ -810,6 +810,7 @@ class Zend_Session extends Zend_Session_Abstract
             if (!class_exists($validator_name)) {
                 Zend_Loader::loadClass($validator_name);
             }
+            /** @var Zend_Session_Validator_Abstract $validator */
             $validator = new $validator_name;
             if ($validator->validate() === false) {
                 throw new Zend_Session_Validator_Exception("This session is not valid according to {$validator_name}.");

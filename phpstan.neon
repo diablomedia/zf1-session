@@ -4,20 +4,20 @@ parameters:
     level: 8
     paths:
         - ./
-    excludes_analyse:
+    excludePaths:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
         # Arrays can be callable
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(.Zend_Session…., .handleSessionStartE….\) given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Session.php
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array{.Zend_Session…., .handleSessionStartE….} given\.#'
+            path: './src/Zend/Session.php'
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array\(.Zend_Session…., .handleSilentWriteCl….\) given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Session.php
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, array{.Zend_Session…., .handleSilentWriteCl….} given\.#'
+            path: './src/Zend/Session.php'
         -
-            message: '#Parameter \#6 \$gc of function session_set_save_handler expects callable\(string\): bool, array\(Zend_Session_SaveHandler_Interface, .gc.\) given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Session.php
+            message: '#Parameter \#6 \$gc of function session_set_save_handler expects callable\(string\): bool, array{Zend_Session_SaveHandler_Interface, .gc.} given\.#'
+            path: './src/Zend/Session.php'
         # I think phpstan doesn't like the type of the closure here
         -
             message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int, array\): bool\)\|null, Closure\(mixed, mixed, mixed, mixed, mixed\): void given\.#'
