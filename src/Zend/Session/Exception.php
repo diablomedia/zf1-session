@@ -47,10 +47,10 @@ class Zend_Session_Exception extends Zend_Exception
      * @param  string $errstr
      * @param  string $errfile
      * @param  int    $errline
-     * @param  string $errcontext
+     * @param  array $errcontext
      * @return void
      */
-    public static function handleSessionStartError($errno, $errstr, $errfile, $errline, $errcontext)
+    public static function handleSessionStartError($errno, $errstr, $errfile, $errline, $errcontext = array())
     {
         self::$sessionStartError = $errfile . '(Line:' . $errline . '): Error #' . $errno . ' ' . $errstr;
     }
@@ -63,10 +63,10 @@ class Zend_Session_Exception extends Zend_Exception
      * @param  string $errstr
      * @param  string $errfile
      * @param  int    $errline
-     * @param  string $errcontext
+     * @param  array $errcontext
      * @return void
      */
-    public static function handleSilentWriteClose($errno, $errstr, $errfile, $errline, $errcontext)
+    public static function handleSilentWriteClose($errno, $errstr, $errfile, $errline, $errcontext = array())
     {
         self::$sessionStartError .= PHP_EOL . $errfile . '(Line:' . $errline . '): Error #' . $errno . ' ' . $errstr;
     }
