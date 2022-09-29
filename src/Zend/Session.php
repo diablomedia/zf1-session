@@ -512,17 +512,7 @@ class Zend_Session extends Zend_Session_Abstract
             }
         }
 
-        $hashBitsPerChar = ini_get('session.hash_bits_per_character');
-        if (!$hashBitsPerChar) {
-            $hashBitsPerChar = 5; // the default value
-        }
-        $pattern = '';
-        switch ($hashBitsPerChar) {
-            case 4: $pattern = '^[0-9a-f]*$'; break;
-            case 5: $pattern = '^[0-9a-v]*$'; break;
-            case 6: $pattern = '^[0-9a-zA-Z-,]*$'; break;
-        }
-        return preg_match('#' . $pattern . '#', $id);
+        return preg_match('#^[0-9a-zA-Z-,]*$#', $id);
     }
 
 
