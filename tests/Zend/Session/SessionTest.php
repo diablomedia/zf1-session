@@ -190,7 +190,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
     public function testInit()
     {
         $s = new Zend_Session_Namespace();
-        $this->assertTrue($s instanceof Zend_Session_Namespace, 'Zend_Session Object not returned');
+        $this->assertInstanceOf(Zend_Session_Namespace::class, $s, 'Zend_Session Object not returned');
     }
 
     /**
@@ -218,7 +218,7 @@ class Zend_Session_SessionTest extends PHPUnit\Framework\TestCase
     public function testInitSession()
     {
         $s = new Zend_Session_Namespace('namespace');
-        $this->assertTrue($s instanceof Zend_Session_Namespace, 'Zend_Session_Namespace object not returned');
+        $this->assertInstanceOf(Zend_Session_Namespace::class, $s, 'Zend_Session_Namespace object not returned');
     }
 
     /**
