@@ -10,17 +10,17 @@ parameters:
     ignoreErrors:
         # Arrays can be callable
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int\): bool\)\|null, array{.Zend_Session…., .handleSessionStartE….} given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array{.Zend_Session…., .handleSessionStartE….} given\.#'
             path: './src/Zend/Session.php'
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int\): bool\)\|null, array{.Zend_Session…., .handleSilentWriteCl….} given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, array{.Zend_Session…., .handleSilentWriteCl….} given\.#'
             path: './src/Zend/Session.php'
         -
             message: '#Parameter \#6 \$gc of function session_set_save_handler expects callable\(string\): bool, array{Zend_Session_SaveHandler_Interface, .gc.} given\.#'
             path: './src/Zend/Session.php'
         # I think phpstan doesn't like the type of the closure here
         -
-            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int\): bool\)\|null, Closure\(mixed, mixed, mixed, mixed, mixed=\): void given\.#'
+            message: '#Parameter \#1 \$callback of function set_error_handler expects \(callable\(int, string, string, int(, array)?\): bool\)\|null, Closure\(mixed, mixed, mixed, mixed, mixed=\): void given\.#'
             path: './src/Zend/Session.php'
         # Session extension is required by composer, shouldn't hit false here
         -
